@@ -274,7 +274,7 @@
         <div class="section-card">
             <h2>📏 The Great Vertical Challenge</h2>
             <p>
-                Mujhe pata hai ki main tumhari height ka har baar mazaak udata hoon. "Arey Chandu tu toh table ke niche se nikal jayegi", "Pehle bench par khadi ho ja fir baat kar"... 😜 
+                Mujhe pata hai ki main tumhari height ka har baar mazaak udata hoon. "Arey Chandu, bike par peechhe baithne ke liye bhi toh tujhe footpath ka sahara lena padta hai!" 😂😜
                 <br><br>
                 Par jokes aside, I really mean this: Tum pocket-sized zaroor ho, par tumhara dil aur dimaag dono bohot bade hain. Tum smart ho, intelligent ho, aur ekdam beautiful heart wali ho. Aise hi bindass aur mad rehna hamesha!
             </p>
@@ -456,32 +456,9 @@
             
             setTimeout(() => {
                 currentIndex++;
-                errorTryCount = 0; // Reset Auto-Fixer for the new photo
+                errorTryCount = 0; // Reset error counter for the new image
                 
-                // Change button style on the very last photo (23rd photo)
                 if (currentIndex === photos.length - 1) {
-                    nextBtn.innerText = "Claim Final Surprise 🎁";
+                    nextBtn.innerText = "Final Surprise Dekho 🎁";
                     nextBtn.style.background = "linear-gradient(45deg, #ff1493, #ffd700)";
-                    nextBtn.style.color = "#000";
-                    nextBtn.style.border = "3px solid #000";
-                    nextBtn.style.transform = "scale(1.05)";
-                } else {
-                    nextBtn.innerText = "Next Photo! 📸";
-                }
-
-                // Change content based on exact array
-                imgEl.src = photos[currentIndex].src;
-                textEl.innerText = photos[currentIndex].text;
-
-                // Fade in new photo
-                imgEl.style.opacity = 1;
-                textEl.style.opacity = 1;
-            }, 400); 
-        }
-
-        function closeGift() {
-            modal.style.display = 'none';
-        }
-    </script>
-</body>
-</html>
+                    nextBtn.style.co
