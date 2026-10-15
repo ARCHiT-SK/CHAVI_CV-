@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Chandu! 💖 - From Archit</title>
+    <!-- Importing Fun Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Outfit:wght@400;600;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS VARIABLES FOR THEME --- */
+        :root {
+            --pink-main: #ff4da6;
+            --pink-dark: #d6006e;
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * { 
+            box-sizing: border-box; 
+            user-select: none; 
+        }
+
+        body {
+            margin: 0; 
+            padding: 0;
+            background: linear-gradient(135deg, #ffe6f0 0%, #ffd1dc 50%, #ffb6c1 100%);
+            font-family: 'Outfit', sans-serif;
+            color: #2c2c2c;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- SCREEN 1: START SCREEN & DODGING BUTTON --- */
+        #start-screen {
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;
+            position: relative; 
+            z-index: 10; 
+            padding: 20px;
+        }
+
+        .hero-title-start {
+            font-family: 'Fredoka One', cursive; 
+            font-size: 3.5rem;
+            color: var(--pink-dark);
+            text-shadow: 3px 3px 0px #fff; 
+            margin-bottom: 15px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        .subtitle-start {
+            font-size: 1.4rem; 
+            font-weight: 800; 
+            color: #800040;
+            background: #fff; 
+            padding: 10px 25px; 
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            margin-bottom: 40px;
+            border: 2px dashed var(--pink-main);
+        }
+
+        #runaway-btn {
+            padding: 18px 45px; 
+            font-size: 1.4rem; 
+            font-family: 'Fredoka One', cursive;
+            background: linear-gradient(45deg, #ff1493, #ff69b4); 
+            color: white;
+            border: 4px solid white; 
+            border-radius: 50px; 
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(255, 20, 147, 0.5); 
+            position: absolute; 
+            z-index: 100;
+        }
+
+        /* --- SCREEN 2: FAKE LOADER SCREEN --- */
+        #loader-screen {
+            display: none; 
+            height: 100vh; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;
+            background: var(--pink-dark); 
+            color: white; 
+            padding: 20px;
+        }
+        
+        .spinner {
+            width: 70px; 
+            height: 70px; 
+            border: 8px solid rgba(255,255,255,0.3);
+            border-top: 8px solid white; 
+            border-radius: 50%;
+            animation: spin 1s linear infinite; 
+            margin-bottom: 25px;
+        }
+
+        #loader-text {
+            font-family: 'Fredoka One', cursive; 
+            font-size: 2rem;
+            max-width: 700px; 
+            line-height: 1.5;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- SCREEN 3: MAIN PAGE --- */
+        #main-content {
+            display: none; 
+            padding: 40px 15px; 
+            max-width: 900px; 
+            margin: 0 auto;
+            animation: pageSlideUp 0.8s ease-out forwards;
+        }
+
+        @keyframes pageSlideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header-box {
+            text-align: center; 
+            background: var(--card-bg); 
+            padding: 40px 20px;
+            border-radius: 30px; 
+            box-shadow: 0 15px 35px rgba(255,105,180,0.25);
+            border: 4px solid white; 
+            margin-bottom: 40px;
+        }
+
+        .main-heading { font-family: 'Fredoka One', cursive; font-size: 3.2rem; color: var(--pink-dark); margin: 0; text-shadow: 2px 2px 0px #fff;}
+        .sub-heading { font-size: 1.4rem; font-weight: 800; color: #d6006e; margin-top: 10px; }
+        
+        .section-card {
+            background: var(--card-bg); 
+            border-radius: 25px; 
+            padding: 30px 25px;
+            margin-bottom: 35px; 
+            box-shadow: 0 10px 30px rgba(255,105,180,0.15);
+            border-left: 10px solid var(--pink-main); 
+            border: 3px solid white;
+        }
+
+        .section-card h2 { font-family: 'Fredoka One', cursive; color: var(--pink-dark); font-size: 2rem; margin-top: 0; }
+        .section-card p { font-size: 1.2rem; line-height: 1.8; font-weight: 500; }
+        
+        /* List style for Routine Section */
+        .section-card ul { font-size: 1.25rem; line-height: 2; font-weight: 600; color: #4a4a4a; list-style-type: none; padding-left: 0;}
+        .section-card li { margin-bottom: 12px; background: #fff0f6; padding: 10px 15px; border-radius: 12px; border: 1px dashed #ffb6c1;}
+
+        /* --- PHOTO REVEAL (POLAROID STYLE) --- */
+        .photo-reveal-container {
+            background: #fff; 
+            padding: 20px 20px 30px 20px; 
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+            text-align: center;
+            max-width: 450px; 
+            margin: 0 auto 40px auto;
+            border: 1px solid #eee; 
+            transform: rotate(-2deg); 
+            transition: 0.3s;
+        }
+        
+        .photo-reveal-container:hover { transform: rotate(0deg) scale(1.02); }
+
+        #reveal-img {
+            width: 100%; 
+            height: 450px; 
+            object-fit: cover; 
+            border-radius: 10px;
+            background: #f0f0f0; 
+            transition: opacity 0.4s ease-in-out;
+            border: 2px solid #ffe6f0;
+        }
+
+        #reveal-text {
+            font-family: 'Caveat', cursive; 
+            font-size: 2.2rem; 
+            color: #d6006e;
+            margin-top: 20px; 
+            font-weight: 700; 
+            line-height: 1.2;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .next-btn {
+            background: var(--pink-main); 
+            color: white; 
+            border: none; 
+            padding: 15px 35px;
+            font-size: 1.3rem; 
+            font-family: 'Fredoka One', cursive; 
+            border-radius: 30px;
+            cursor: pointer; 
+            box-shadow: 0 6px 15px rgba(255,77,166,0.4);
+            margin-top: 15px; 
+            transition: 0.2s;
+        }
+        
+        .next-btn:hover { background: #d6006e; transform: translateY(-3px); }
+
+        /* --- FINAL MODAL POPUP --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh;
+            background: rgba(0,0,0,0.7); 
+            z-index: 1000; 
+            justify-content: center;
+            align-items: center; 
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white; 
+            padding: 40px; 
+            border-radius: 25px; 
+            max-width: 500px;
+            text-align: center; 
+            border: 5px solid var(--pink-main);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        /* Footer */
+        .footer-note { text-align: center; font-size: 1.3rem; font-weight: 800; color: var(--pink-dark); margin-top: 40px; padding-bottom: 30px;}
+        @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
+    </style>
+</head>
+<body>
+
+    <!-- SCREEN 1: DODGING BUTTON -->
+    <div id="start-screen">
+        <div class="hero-title-start">Hey Chandu! 🌸</div>
+        <div class="subtitle-start">Archit ne kuch banaya hai tumhare liye...</div>
+        <p style="font-weight: bold; color: #d6006e; font-size: 1.3rem;">But pehle iss button ko pakad ke dikhao! 😉</p>
+        <button id="runaway-btn" style="top: 60%;">Open Surprise ✨</button>
+    </div>
+
+    <!-- SCREEN 2: FAKE LOADER -->
+    <div id="loader-screen">
+        <div class="spinner"></div>
+        <p id="loader-text">Initializing System...</p>
+    </div>
+
+    <!-- SCREEN 3: MAIN PAGE -->
+    <div id="main-content">
+
+        <div class="header-box">
+            <h1 class="main-heading">Happy Birthday Chandu! 🎉</h1>
+            <div class="sub-heading">Chavi Sharma — The Official Queen of Bak-Bak, Food & Sleep 👑</div>
+        </div>
+
+        <div class="section-card">
+            <h2>🏫 BPS Reception Counter - Day 1</h2>
+            <p>
+                Do you remember our very first meeting at the <b>BPS reception counter</b>? Main wahan tha aur mujhe bilkul idea nahi tha ki uss din mujhe ek aisi ladki milne wali hai jo mera itna dimaag khayegi! 😂 
+                <br><br>
+                Lekin seriously, uss pehle din se lekar aaj tak, tumhari saari nautanki, tumhara gussa, aur tumhari unlimited bak-bak meri life ka ek bohot special part ban chuki hai. We started from random talks aur aaj hum itne close friends hain. Thank you for always being there!
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h2>📏 The Great Vertical Challenge</h2>
+            <p>
+                Mujhe pata hai ki main tumhari height ka har baar mazaak udata hoon. "Arey Chandu tu toh table ke niche se nikal jayegi", "Pehle bench par khadi ho ja fir baat kar"... 😜 
+                <br><br>
+                Par jokes aside, I really mean this: Tum pocket-sized zaroor ho, par tumhara dil aur dimaag dono bohot bade hain. Tum smart ho, intelligent ho, aur ekdam beautiful heart wali ho. Aise hi bindass aur mad rehna hamesha!
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h2>⏰ Chandu's 24-Hour Routine</h2>
+            <p>Agar main tumhara asali time-table banaun toh wo definitely kuch aisa dikhega:</p>
+            <ul>
+                <li>🗣️ <b>30% Time:</b> Non-stop Bak-Bak karna (Without taking a breath).</li>
+                <li>🍕 <b>30% Time:</b> Bas khana, khana aur khana! (Full foodie mode ON).</li>
+                <li>😴 <b>20% Time:</b> Kumbhkaran ki tarah bed par pade rehna aur sona.</li>
+                <li>🚗 <b>15% Time:</b> Ghumakkad mode on (Har jagah ghumna-firna).</li>
+                <li>😎 <b>5% Time:</b> Archit ki baat sunna (Bohot rare, but happens).</li>
+            </ul>
+        </div>
+
+        <!-- PHOTO REVEAL SECTION -->
+        <h2 style="text-align: center; font-family: 'Fredoka One', cursive; color: var(--pink-dark); font-size: 2.6rem; margin-top: 50px;">📸 The Mood Fix Gallery</h2>
+        <p style="text-align: center; font-weight: bold; font-size: 1.2rem; color: #d6006e; margin-bottom: 30px;">Button click karo aur ek-ek karke photu dekho! 👇</p>
+
+        <div class="photo-reveal-container">
+            <!-- Image loaded by JS dynamically WITH AUTO-FIXER -->
+            <img id="reveal-img" src="1.png" alt="Chandu Memory" onerror="fixBrokenImage(this)">
+            <p id="reveal-text">Cat Filter + Cozy Red Shirt Vibe! 🐱 Cute Chandu mode on.</p>
+            <button class="next-btn" id="next-btn" onclick="showNextPhoto()">Next Photo! 📸</button>
+        </div>
+
+        <div class="footer-note">
+            Keep Smiling, Keep Eating & Have The Best Birthday Ever! 🥳💖 <br>
+            - Tumhara Personal Mood Fixer, Archit 😎
+        </div>
+
+    </div>
+
+    <!-- FINAL SURPRISE MODAL -->
+    <div class="modal" id="surprise-modal">
+        <div class="modal-content">
+            <h2 style="color: var(--pink-dark); font-family: 'Fredoka One', cursive; font-size: 2.2rem;">🏆 CERTIFICATE OF AWESOMENESS 🏆</h2>
+            <p style="font-size: 1.2rem; font-weight: bold; color: #333; margin-top: 10px;">Presented To: <br><span style="font-size: 1.8rem; color: var(--pink-main);">Chavi Sharma (Chandu)</span></p>
+            <div style="font-size: 5rem; margin: 15px 0;">🥇</div>
+            <p style="font-size: 1.15rem; color: #555; line-height: 1.6;">
+                For winning the official title of:<br>
+                <b>"The Cutest, Smartest, Biggest Foodie & Most Talkative Best Friend in the World!"</b><br><br>
+                Happy Birthday! 🎂✨
+            </p>
+            <button onclick="closeGift()" style="background: var(--pink-main); color: white; border: none; padding: 12px 30px; border-radius: 30px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 1.1rem;">Awww, Thanks Archit! 🥰</button>
+        </div>
+    </div>
+
+    <script>
+        /* --- RUNAWAY BUTTON --- */
+        const btn = document.getElementById('runaway-btn');
+        const startScreen = document.getElementById('start-screen');
+        const loaderScreen = document.getElementById('loader-screen');
+        const mainContent = document.getElementById('main-content');
+        
+        let dodgeCount = 0;
+        const maxDodges = 8; // Button dodges 8 times!
+
+        const teaseTexts = [
+            "Oops! Miss ho gaya! 😜",
+            "Thoda aur tej chalao hath! 🏃‍♀️",
+            "Height choti hai toh speed bhi kam hai kya? 📐",
+            "Archit se itni asani se gift nahi milta! 😎",
+            "Are itna khana khati ho, thodi energy dikhao! 🍕",
+            "Nind me ho kya abhi tak? 😴",
+            "Almost there... but NO! 😂",
+            "Okay fine, ab click kar lo! ❤️"
+        ];
+
+        btn.addEventListener('mouseover', function() {
+            if (dodgeCount < maxDodges) {
+                const maxX = window.innerWidth - btn.clientWidth - 50;
+                const maxY = window.innerHeight - btn.clientHeight - 50;
+                
+                const randomX = Math.max(20, Math.random() * maxX);
+                const randomY = Math.max(20, Math.random() * maxY);
+                
+                btn.style.left = `${randomX}px`;
+                btn.style.top = `${randomY}px`;
+                
+                btn.innerText = teaseTexts[dodgeCount];
+                dodgeCount++;
+            }
+        });
+
+        btn.addEventListener('click', function() {
+            if (dodgeCount >= maxDodges) {
+                // Show Loader instead of main page right away
+                startScreen.style.display = 'none';
+                loaderScreen.style.display = 'flex';
+                
+                const loadTexts = [
+                    "Checking Chandu's Identity...",
+                    "Scanning Height... Error: Too Short to Scan! 😜",
+                    "Calculating Food Craving Level... 🍗🍕",
+                    "Scanning Sleep and Bak-Bak Level... 😴🗣️",
+                    "Warning: 1000% Overload Detected! 🔥",
+                    "Access Granted! Loading Surprise... ❤️"
+                ];
+
+                let textIndex = 0;
+                const loadEl = document.getElementById('loader-text');
+                loadEl.innerText = loadTexts[0];
+                
+                // Change text every 1.5 seconds
+                const loadInterval = setInterval(() => {
+                    textIndex++;
+                    if (textIndex < loadTexts.length) {
+                        loadEl.innerText = loadTexts[textIndex];
+                    } else {
+                        clearInterval(loadInterval);
+                        loaderScreen.style.display = 'none';
+                        mainContent.style.display = 'block';
+                        window.scrollTo(0, 0);
+                    }
+                }, 1500); 
+            }
+        });
+
+        /* --- ONE-BY-ONE PHOTO REVEAL LOGIC (ALL 23 PHOTOS) --- */
+        // Exact names: 1-10 as .png, 11-23 as .jpg
+        const photos = [
+            { src: "1.png", text: "Cat Filter + Cozy Red Shirt Vibe! 🐱 Cute Chandu mode on." },
+            { src: "2.png", text: "Face Hide Karke Shy Pose! 🙈 Ring & Bracelet aesthetic." },
+            { src: "3.png", text: "Big Eyes Funny Filter! 👁️🤪 Archit's favorite funny dose!" },
+            { src: "4.png", text: "Ghar Ki Beautiful Mehendi Art! ✨ Perfect celebration aesthetic." },
+            { src: "5.png", text: "White Ethnic Outfit + Mehendi Pose 🤍 Royal & Elegant!" },
+            { src: "6.png", text: "Pink Kurti Mein Soft Sweet Smile! 🌸 Simple & Pretty." },
+            { src: "7.png", text: "Full Big Happy Smile! 😁 Jab tum hasti हो toh sab happy!" },
+            { src: "8.png", text: "Black Kurti + Big Expressive Eyes ✨ Soft aesthetic look." },
+            { src: "9.png", text: "Two Braids + Green Glasses Filter 🕶️ Full Swag Chandu!" },
+            { src: "10.png", text: "Blue Shirt + Black Shades 🪐 Cool attitude pose!" },
+            { src: "11.jpg", text: "Foodie mode ON! 🍕 Khana dekhte hi tumhare chehre ki chamak dekh lo!" },
+            { src: "12.jpg", text: "Ghumakkad Chandu! 🚗 Nayi jagah milte hi nayi bak-bak shuru." },
+            { src: "13.jpg", text: "Kumbhkaran mode! 😴 Sote waqt hi shant rehti ho tum." },
+            { src: "14.jpg", text: "Cuteness overload! 💖 Tumhari ye smile sach me mood fix kar deti hai." },
+            { src: "15.jpg", text: "Khana aur Sona, bas yehi do cheezein toh tumhara passion hain! 🍗🛌" },
+            { src: "16.jpg", text: "Attitude dekho madam ka! Choti height, par tevar 6 foot wale. 😎" },
+            { src: "17.jpg", text: "Travel diaries! 🌍 Tumhe toh bas bahar ghumne ka mauka milna chahiye." },
+            { src: "18.jpg", text: "Random selfie because why not? 📸 Dimaag khane se pehle ki photo." },
+            { src: "19.jpg", text: "Snacks time! 🍟 Khate waqt koi Chandu ko disturb na kare." },
+            { src: "20.jpg", text: "Aesthetic vibes! ✨ Looking completely gorgeous here!" },
+            { src: "21.jpg", text: "Sleepy head again. 🥱 Raat bhar overthinking jo karni hoti hai!" },
+            { src: "22.jpg", text: "Posing like a pro! 🌟 Ghumakkad aur stylish dono ek sath." },
+            { src: "23.jpg", text: "The Best Friend ever! ❤️ Tumhare jaisi nautanki koi aur nahi!" }
+        ];
+
+        let currentIndex = 0;
+        const imgEl = document.getElementById('reveal-img');
+        const textEl = document.getElementById('reveal-text');
+        const nextBtn = document.getElementById('next-btn');
+        const modal = document.getElementById('surprise-modal');
+
+        // --- SMART AUTO-FIXER LOGIC ---
+        let errorTryCount = 0;
+        const fallbackExtensions = ['.jpg', '.png', '.jpeg', '.JPG', '.PNG', '.jpg.jpg', '.png.png'];
+
+        function fixBrokenImage(img) {
+            let photoNumber = currentIndex + 1; // Get current photo number automatically
+            if (errorTryCount < fallbackExtensions.length) {
+                // Brute force checking all possible file extensions!
+                img.src = photoNumber + fallbackExtensions[errorTryCount];
+                errorTryCount++;
+            }
+        }
+
+        function showNextPhoto() {
+            // Check if we are at the end button "Claim Final Surprise"
+            if (currentIndex === photos.length - 1) {
+                modal.style.display = 'flex';
+                return;
+            }
+
+            // Fade out current photo
+            imgEl.style.opacity = 0;
+            textEl.style.opacity = 0;
+            
+            setTimeout(() => {
+                currentIndex++;
+                errorTryCount = 0; // Reset Auto-Fixer for the new photo
+                
+                // Change button style on the very last photo (23rd photo)
+                if (currentIndex === photos.length - 1) {
+                    nextBtn.innerText = "Claim Final Surprise 🎁";
+                    nextBtn.style.background = "linear-gradient(45deg, #ff1493, #ffd700)";
+                    nextBtn.style.color = "#000";
+                    nextBtn.style.border = "3px solid #000";
+                    nextBtn.style.transform = "scale(1.05)";
+                } else {
+                    nextBtn.innerText = "Next Photo! 📸";
+                }
+
+                // Change content based on exact array
+                imgEl.src = photos[currentIndex].src;
+                textEl.innerText = photos[currentIndex].text;
+
+                // Fade in new photo
+                imgEl.style.opacity = 1;
+                textEl.style.opacity = 1;
+            }, 400); 
+        }
+
+        function closeGift() {
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
